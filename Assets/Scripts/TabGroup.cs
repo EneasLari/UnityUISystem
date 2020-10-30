@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// This class manages the transitions of tab buttons through three stages(idle,hover,active).
+/// Also manages the pages need to be swapped after tab clicking. Assumes that for every 
+/// index there is a page tab that matches tab's index.
+/// </summary>
 public class TabGroup : MonoBehaviour
 {
     public List<TabButton> tabButtons;
@@ -22,6 +26,8 @@ public class TabGroup : MonoBehaviour
     //pages to swap through tabs
     public List<GameObject> objectsToSwap;
 
+    ///<summary>
+    ///</summary>
     public void Subscribe(TabButton button) {
         if (tabButtons == null) {
             tabButtons = new List<TabButton>();
@@ -29,26 +35,32 @@ public class TabGroup : MonoBehaviour
         tabButtons.Add(button);
     }
 
+    ///<summary>
+    ///</summary>
     public void OnTabEnter(TabButton button) {
         ResetTabs();
-        if (selectedTab == null && button != selectedTab) {
+        if (button != selectedTab) {
             button.background.sprite = tabHover;
             button.background.color = ctabHover;
         }
 
     }
 
+    ///<summary>
+    ///</summary>
     public void OnTabExit(TabButton button) {
         ResetTabs();
     }
 
+    ///<summary>
+    ///</summary>
     public void OnTabSelected(TabButton button) {
         if (selectedTab!=null) {
             selectedTab.Deselect();
         }
 
         selectedTab = button;
-
+        //invoke callbacks that 
         selectedTab.Select();
 
         ResetTabs();
@@ -65,6 +77,8 @@ public class TabGroup : MonoBehaviour
         }
     }
 
+    ///<summary>
+    ///</summary>
     public void ResetTabs() {
         foreach (TabButton button in tabButtons) {
             if (selectedTab != null && button == selectedTab) {
