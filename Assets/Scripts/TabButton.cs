@@ -18,9 +18,11 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
     ///</summary>
     public Image background;
     ///<summary>
+    ///We can trigger methods from inspector
     ///</summary>
     public UnityEvent onTabSelected;
     ///<summary>
+    ///We can trigger methods from inspector
     ///</summary>
     public UnityEvent onTabDeselected;
 

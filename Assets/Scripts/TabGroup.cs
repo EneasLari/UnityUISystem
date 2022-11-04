@@ -27,6 +27,7 @@ public class TabGroup : MonoBehaviour
     public List<GameObject> objectsToSwap;
 
     ///<summary>
+    ///Each tab button calls the Subscribe button and add itself in the tabButtonsList
     ///</summary>
     public void Subscribe(TabButton button) {
         if (tabButtons == null) {
@@ -39,7 +40,7 @@ public class TabGroup : MonoBehaviour
     ///</summary>
     public void OnTabEnter(TabButton button) {
         ResetTabs();
-        if (button != selectedTab) {
+        if (selectedTab==null || button != selectedTab) {
             button.background.sprite = tabHover;
             button.background.color = ctabHover;
         }
@@ -60,7 +61,7 @@ public class TabGroup : MonoBehaviour
         }
 
         selectedTab = button;
-        //invoke callbacks that 
+        //invoke callbacks that are defined on inspector of tabbutton
         selectedTab.Select();
 
         ResetTabs();
